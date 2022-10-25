@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 
 import { AppComponent } from './app.component';
-import { NotPagesFoundComponent } from './pages/not-pages-found/not-pages-found.component';
+import { NotPagesFoundComponent } from './not-pages-found/not-pages-found.component';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
