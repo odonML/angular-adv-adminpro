@@ -18,13 +18,15 @@ export class DonaComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    let id = this.idChart;
-    let type = this.formatChart;
-    let labels = this.labelsChart;
-    let data = this.dataChart;
-    let colors = this.colorsChart;
-    let tittle = this.tittleChart;
-    this.createChart(id, type, labels, data, colors, tittle);
+    Promise.resolve().then(() => {
+      let id = this.idChart;
+      let type = this.formatChart;
+      let labels = this.labelsChart;
+      let data = this.dataChart;
+      let colors = this.colorsChart;
+      let tittle = this.tittleChart;
+      this.createChart(id, type, labels, data, colors, tittle);
+    });
   }
 
   createChart(
