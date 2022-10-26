@@ -1,9 +1,45 @@
 <div class="row">
   <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <app-dona></app-dona>
-      </div>
-    </div>
+    <app-dona
+      [idChart]="idChartOne"
+      [formatChart]="'doughnut'"
+      [labelsChart]="labelsChartOne"
+      [dataChart]="dataChartOne"
+      [colorsChart]="colorsChartOne"
+      [tittleChart]="tittleChartOne"
+    ></app-dona>
+  </div>
+  <div class="col-6">
+    <app-dona
+      [idChart]="idChartTwo"
+      [formatChart]="'pie'"
+      [labelsChart]="labelsChartTwo"
+      [dataChart]="dataChartTwo"
+      [colorsChart]="colorsChartTwo"
+      [tittleChart]="tittleChartTwo"
+    ></app-dona>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <app-dona
+      [idChart]="idChartThree"
+      [formatChart]="'doughnut'"
+      [labelsChart]="labelsChartThree"
+      [dataChart]="dataChartThree"
+      [colorsChart]="colorsChartThree"
+      [tittleChart]="tittleChartThree"
+    ></app-dona>
+  </div>
+  <div class="col-6">
+    <app-dona
+      [idChart]="idChartFour"
+      [formatChart]="'doughnut'"
+      [labelsChart]="labelsChartFour"
+      [dataChart]="dataChartFour"
+      [colorsChart]="colorsChartFour"
+      [tittleChart]="tittleChartFour"
+    ></app-dona>
   </div>
 </div>

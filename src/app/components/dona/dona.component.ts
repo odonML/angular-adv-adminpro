@@ -1,32 +1,49 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto/auto.mjs';
 @Component({
   selector: 'app-dona',
   templateUrl: './dona.component.html',
   styles: [],
 })
-export class DonaComponent implements OnInit {
+export class DonaComponent implements OnInit, AfterViewInit {
+  @Input() idChart: string = 'myChart';
+  @Input() formatChart: string = 'doughnut';
+  @Input() labelsChart: string[] = [];
+  @Input() dataChart: number[] = [];
+  @Input() colorsChart: string[] = [];
+  @Input() tittleChart: string = 'Grafica';
+
   public chart: any;
 
-  ngOnInit(): void {
-    this.createChart();
+  ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    let id = this.idChart;
+    let type = this.formatChart;
+    let labels = this.labelsChart;
+    let data = this.dataChart;
+    let colors = this.colorsChart;
+    let tittle = this.tittleChart;
+    this.createChart(id, type, labels, data, colors, tittle);
   }
 
-  createChart() {
-    this.chart = new Chart('MyChart', {
-      type: 'doughnut', //this denotes tha type of chart
-
+  createChart(
+    id: string,
+    type: any,
+    labels: string[],
+    data: number[],
+    colors: string[],
+    tittle: string
+  ) {
+    this.chart = new Chart(id, {
+      type,
       data: {
-        labels: ['Red', 'Blue', 'Yellow'],
+        labels,
         datasets: [
           {
-            label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-            ],
+            label: tittle,
+            data,
+            backgroundColor: colors,
           },
         ],
       },
