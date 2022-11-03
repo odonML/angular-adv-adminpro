@@ -2,3 +2,7 @@
 #themecolors .selector, .cursor{  
   cursor: pointer;
 }
+.usuario-avatar{
+  height: 200px;
+  width: 200px;
+}
