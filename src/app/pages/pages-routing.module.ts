@@ -1,14 +1,19 @@
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProgressComponent } from './progress/progress.component';
-import { Grafica1Component } from './grafica1/grafica1.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { Grafica1Component } from './grafica1/grafica1.component';
+import { PagesComponent } from './pages.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ProgressComponent } from './progress/progress.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { AuthGuard } from '../guards/auth.guard';
-import { PerfilComponent } from './perfil/perfil.component';
+
+//mantenimientos
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -42,6 +47,22 @@ const routes: Routes = [
         path: 'perfil',
         component: PerfilComponent,
         data: { title: 'perfil de usuario' },
+      },
+      //mantenimientos
+      {
+        path: 'usuarios',
+        component: UsuariosComponent,
+        data: { title: 'Usuario de aplicacion' },
+      },
+      {
+        path: 'hospitales',
+        component: HospitalesComponent,
+        data: { title: 'Hospitales de aplicacion' },
+      },
+      {
+        path: 'medicos',
+        component: MedicosComponent,
+        data: { title: 'Medicos de aplicacion' },
       },
     ],
   },

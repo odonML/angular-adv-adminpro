@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="buscar usuario"
+          (keyup)="buscarUsuario(inputBuscarUsuario.value)"
+          #inputBuscarUsuario
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="cargando">
+  <div class="col-12">
+    <div class="alert alert-info text-center" role="alert">
+      <h4 class="alert-heading">Cargando...</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Espere por favor</p>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Usuarios</h4>
+        <h6 class="card-subtitle">Usuarios registrados en la aplicacion</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th class="w140">Role</th>
+                <th class="w100">Auth</th>
+                <th class="w100">Acciones</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let usuario of usuarios">
+              <tr>
+                <td class="text-center">
+                  <img
+                    (click)="abrirModal(usuario)"
+                    [src]="usuario.ImgUserUrl"
+                    alt="Avatar del usuario"
+                    class="avatar cursor"
+                  />
+                </td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <td class="text-center">
+                  <select
+                    class="form-control"
+                    [(ngModel)]="usuario.role"
+                    (change)="cambiarRole(usuario)"
+                  >
+                    <option value="USER_ROLE">User</option>
+                    <option value="ADMIO_ROLE">Admin</option>
+                  </select>
+                </td>
+                <td class="text-center">
+                  <span *ngIf="usuario.google" class="label label-danger"
+                    >Google</span
+                  >
+                  <span *ngIf="!usuario.google" class="label label-info"
+                    >Email</span
+                  >
+                </td>
+
+                <td class="text-nowrap text-center">
+                  <a data-toggle="tooltip" data-original-title="Editar">
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                    (click)="eliminarUsuario(usuario)"
+                    class="cursor"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="inputBuscarUsuario.value.length === 0">
+            <button (click)="cambiarPagina(-5)" class="btn btn-info">
+              Anterior
+            </button>
+            <button (click)="cambiarPagina(5)" class="btn btn-primary">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

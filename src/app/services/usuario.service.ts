@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, map, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginUsuario } from '../interfaces/loginForm.interface';
+import { obtenerUsuarios } from '../interfaces/obtenerUsuarios.interface';
 import { RegisterForm } from '../interfaces/registerForm.interfaces';
 import { Usuario } from '../models/usuario.model';
 
@@ -25,6 +26,11 @@ export class UsuarioService {
   get role() {
     return this.usuario.role || '';
   }
+  get headers() {
+    return {
+      headers: { 'x-token': this.token },
+    };
+  }
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
@@ -35,9 +41,7 @@ export class UsuarioService {
 
   validarToken() {
     return this.http
-      .get(`${environment.base_url}/login/renew`, {
-        headers: { 'x-token': this.token },
-      })
+      .get(`${environment.base_url}/login/renew`, this.headers)
       .pipe(
         map((res: any) => {
           console.log(res);
@@ -69,10 +73,56 @@ export class UsuarioService {
       ...data,
       role: this.role,
     };
-    return this.http.put(`${environment.base_url}/usuarios/${this.id}`, data, {
-      headers: { 'x-token': this.token },
-    });
+    return this.http.put(
+      `${environment.base_url}/usuarios/${this.id}`,
+      data,
+      this.headers
+    );
   }
+
+  obtenerUsuarios(desde: number = 0) {
+    return this.http
+      .get<obtenerUsuarios>(
+        `${environment.base_url}/usuarios?desde=${desde}`,
+        this.headers
+      )
+      .pipe(
+        map((res) => {
+          const usuarios = res.usuarios.map(
+            (user) =>
+              new Usuario(
+                user.nombre,
+                user.email,
+                '',
+                user.img,
+                user.google,
+                user.role,
+                user.id
+              )
+          );
+          return {
+            total: res.total,
+            usuarios,
+          };
+        })
+      );
+  }
+
+  borrarUsuario(usuario: Usuario) {
+    return this.http.delete(
+      `${environment.base_url}/usuarios/${usuario.id}`,
+      this.headers
+    );
+  }
+
+  cambiarRoleUsuario(usuario: Usuario) {
+    return this.http.put(
+      `${environment.base_url}/usuarios/${usuario.id}`,
+      usuario,
+      this.headers
+    );
+  }
+
   //====================================================================
   //=========================== LOGIN ==================================
   //====================================================================
