@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { DonaComponent } from './dona/dona.component';
 import { ModalImagenComponent } from './modal-imagen/modal-imagen.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,6 @@ import { ModalImagenComponent } from './modal-imagen/modal-imagen.component';
     DonaComponent,
     ModalImagenComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PipesModule],
 })
 export class ComponentsModule {}

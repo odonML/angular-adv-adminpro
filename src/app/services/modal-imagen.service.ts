@@ -8,7 +8,7 @@ import { EventEmitter } from 'stream';
 export class ModalImagenService {
   private _ocultarModal: boolean = true;
 
-  tipo: string = '';
+  tipo?: 'usuarios' | 'hospitales' | 'medicos';
   id?: string = '';
   img?: string = '';
 
@@ -29,6 +29,7 @@ export class ModalImagenService {
     this.tipo = tipo;
     this.id = id;
     this.img = img;
+    console.log('service', img);
   }
 
   cerrarModal() {

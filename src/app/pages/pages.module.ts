@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,10 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
     AccountSettingsComponent,
     PromesasComponent,
     RxjsComponent,
+    PerfilComponent,
+    UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +52,7 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    PipesModule,
   ],
 })
 export class PagesModule {}

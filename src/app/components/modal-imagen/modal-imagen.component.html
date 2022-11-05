@@ -27,7 +27,7 @@
         <div class="modal-body">
           <img
             *ngIf="!imagenTemp"
-            [src]="modalImagenService.img"
+            [src]="modalImagenService.img | imagen: modalImagenService.tipo"
             class="usuario-avatar"
             alt=""
           />

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalImagenService } from '../services/modal-imagen.service';
 import { SettingsService } from '../services/settings.service';
 
 declare function customInitFunction(): any;

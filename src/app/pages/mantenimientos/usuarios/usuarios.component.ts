@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './usuarios.component.html',
   styles: [],
 })
-export class UsuariosComponent implements OnInit, OnDestroy {
+export class UsuariosComponent implements OnInit {
   totalUsuarios: number = 0;
   usuarios: Usuario[] = [];
   desde: number = 0;
@@ -62,7 +62,17 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     } else {
       this.busquedaService.buscar('usuarios', termino).subscribe(
         (res) => {
-          this.usuarios = res.usuarios;
+          this.usuarios = res.resultados.map(
+            (user: any) =>
+              new Usuario(
+                user.nombre,
+                user.email,
+                '',
+                user.img,
+                user.google,
+                user.role
+              )
+          );
         },
         (err) => {
           this.usuarios = [];
@@ -114,11 +124,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   abrirModal(usuario: Usuario) {
-    this.modalImageService.abrirModal(
-      'usuarios',
-      usuario.id,
-      usuario.ImgUserUrl
-    );
+    this.modalImageService.abrirModal('usuarios', usuario.id, usuario.img);
   }
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe();

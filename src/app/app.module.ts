@@ -7,6 +7,7 @@ import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { NotPagesFoundComponent } from './not-pages-found/not-pages-found.component';
 import { AuthModule } from './auth/auth.module';
+import { ImagenPipe } from './pipes/imagen.pipe';
 
 @NgModule({
   declarations: [AppComponent, NotPagesFoundComponent],

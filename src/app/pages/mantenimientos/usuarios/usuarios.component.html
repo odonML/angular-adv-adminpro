@@ -47,7 +47,7 @@
                 <td class="text-center">
                   <img
                     (click)="abrirModal(usuario)"
-                    [src]="usuario.ImgUserUrl"
+                    [src]="usuario.img | imagen: 'usuarios'"
                     alt="Avatar del usuario"
                     class="avatar cursor"
                   />

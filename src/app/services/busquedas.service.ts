@@ -28,20 +28,9 @@ export class BusquedasService {
       )
       .pipe(
         map((res: any) => {
-          const usuarios = res.resultado.map(
-            (user: any) =>
-              new Usuario(
-                user.nombre,
-                user.email,
-                '',
-                user.img,
-                user.google,
-                user.role
-              )
-          );
           return {
             total: res.total,
-            usuarios,
+            resultados: res.resultado,
           };
         })
       );
