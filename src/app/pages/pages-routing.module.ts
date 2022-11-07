@@ -14,6 +14,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +28,11 @@ const routes: Routes = [
         path: 'progress',
         component: ProgressComponent,
         data: { title: 'progress' },
+      },
+      {
+        path: 'buscar/:termino',
+        component: BusquedaComponent,
+        data: { title: 'busqueda' },
       },
       {
         path: 'grafica1',
@@ -50,11 +57,6 @@ const routes: Routes = [
       },
       //mantenimientos
       {
-        path: 'usuarios',
-        component: UsuariosComponent,
-        data: { title: 'Usuario de aplicacion' },
-      },
-      {
         path: 'hospitales',
         component: HospitalesComponent,
         data: { title: 'Hospitales de aplicacion' },
@@ -63,6 +65,15 @@ const routes: Routes = [
         path: 'medicos',
         component: MedicosComponent,
         data: { title: 'Medicos de aplicacion' },
+      },
+
+      //admin
+
+      {
+        path: 'usuarios',
+        canActivate: [AdminGuard],
+        component: UsuariosComponent,
+        data: { title: 'Usuario de aplicacion' },
       },
     ],
   },

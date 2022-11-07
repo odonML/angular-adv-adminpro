@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Usuarios</h3>
+
+        <div class="alert alert-info" *ngIf="noExistUsuarios">
+          <p class="mb-0">No hay Usuarios</p>
+        </div>
+
+        <div class="table-responsive" *ngIf="!noExistUsuarios">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <td>
+                  <img
+                    [src]="usuario.img | imagen: 'usuarios'"
+                    [alt]="usuario.nombre"
+                    class="avatar"
+                  />
+                </td>
+                <td>{{ usuario.nombre }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Medicos</h3>
+        <div class="alert alert-info" *ngIf="noExistMedicos">
+          <p class="mb-0">No hay Medicos</p>
+        </div>
+
+        <div class="table-responsive" *ngIf="!noExistMedicos">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medico of medicos">
+                <td>
+                  <img
+                    [src]="medico.img | imagen: 'medicos'"
+                    [alt]="medico.nombre"
+                    class="avatar"
+                  />
+                </td>
+                <td>{{ medico.nombre }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h3>Hospitales</h3>
+        <div class="alert alert-info" *ngIf="noExistHospitales">
+          <p class="mb-0">No hay Hospitales</p>
+        </div>
+
+        <div class="table-responsive" *ngIf="!noExistHospitales">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="w100">Avatar</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hospital of hospitales">
+                <td>
+                  <img
+                    [src]="hospital.img | imagen: 'hospitales'"
+                    [alt]="hospital.nombre"
+                    class="avatar"
+                  />
+                </td>
+                <td>{{ hospital.nombre }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

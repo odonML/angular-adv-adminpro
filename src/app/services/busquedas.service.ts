@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { obtenerGlobalBusqueda } from '../interfaces/obtenerGlobalBusqueda.interface';
 import { Usuario } from '../models/usuario.model';
 
 @Injectable({
@@ -34,5 +35,12 @@ export class BusquedasService {
           };
         })
       );
+  }
+
+  gobalSearch(termino: string) {
+    return this.http.get<obtenerGlobalBusqueda>(
+      `${environment.base_url}/todo/${termino}`,
+      this.headers
+    );
   }
 }

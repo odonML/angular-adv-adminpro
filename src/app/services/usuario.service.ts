@@ -31,8 +31,15 @@ export class UsuarioService {
       headers: { 'x-token': this.token },
     };
   }
+
+  saveLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     this.router.navigateByUrl('/login');
     // google.accounts.id.remove("corre", () =>{
     // this.router.navigateByUrl('/login');
@@ -44,12 +51,9 @@ export class UsuarioService {
       .get(`${environment.base_url}/login/renew`, this.headers)
       .pipe(
         map((res: any) => {
-          console.log(res);
           const { nombre, img, email, google, role, id } = res.data;
           this.usuario = new Usuario(nombre, email, '', img, google, role, id);
-
-          console.log(this.usuario);
-          localStorage.setItem('token', res.token);
+          this.saveLocalStorage(res.token, res.menu);
           return true;
         }),
         catchError((res) => of(false))
@@ -63,7 +67,7 @@ export class UsuarioService {
   crearUsuario(form: RegisterForm) {
     return this.http.post(`${environment.base_url}/usuarios`, form).pipe(
       tap((res: any) => {
-        localStorage.setItem('token', res.token);
+        this.saveLocalStorage(res.token, res.menu);
       })
     );
   }
@@ -129,7 +133,7 @@ export class UsuarioService {
   loginUsuario(form: LoginUsuario) {
     return this.http.post(`${environment.base_url}/login`, form).pipe(
       tap((res: any) => {
-        localStorage.setItem('token', res.token);
+        this.saveLocalStorage(res.token, res.menu);
       })
     );
   }
@@ -139,7 +143,7 @@ export class UsuarioService {
       .post(`${environment.base_url}/login/google`, { token })
       .pipe(
         tap((res: any) => {
-          localStorage.setItem('token', res.token);
+          this.saveLocalStorage(res.token, res.menu);
         })
       );
   }
